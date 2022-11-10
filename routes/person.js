@@ -25,5 +25,7 @@ router.get('/person', (req,res) =>{
 }) /// se define el nombre de la ruta
 
 
-router.get('/person')
+router.get('/error',(req,res)=>{
+    throw new Error("Forced error")
+})
 module.exports = router; ///exportar para poder usarlo en index.js
