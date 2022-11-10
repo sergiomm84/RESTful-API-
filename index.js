@@ -3,14 +3,18 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path'); ///para la ruta de los archivos html
+const bodyParser= require('body-parser');
 const personRoute = require('./routes/person') ///se jala el archivo de la ruta
+const customerRoute = require('./routes/customer')
 
+app.use(bodyParser.json());
 app.use((req,res,next)=>{
     console.log(`${new Date().toString()} Ruta ${req.originalUrl}`)
     //res.send(`Ruta ${req.originalUrl}`)
     next();
 })
 app.use(personRoute);
+app.use(customerRoute);
 
 //app.use(express.json)
 app.use(express.static('public'))
@@ -22,7 +26,7 @@ app.use((req,res,next)=>{
 
 //handler for 500
 app.use((err,req,res,next)=>{  
-    console.error(err.stack);
+   // console.error(err.stack);
     res.sendFile(path.join(__dirname,'./public/500.html'));
 
 })
