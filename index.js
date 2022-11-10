@@ -3,7 +3,8 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
-
+const personRoute = require('./routes/person')
+app.use(personRoute);
 
 //app.use(express.json)
 app.use(express.static('public'))
